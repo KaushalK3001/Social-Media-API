@@ -5,6 +5,9 @@ const dotenv = require('dotenv');
 const helmet = require('helmet');
 const morgan = require('morgan');
 
+const userRoute = require('./routes/users');
+const authRoute = require('./routes/auth');
+
 dotenv.config();
 
 
@@ -29,6 +32,9 @@ app.get("/", (req, res) => {
 app.get("/users", (req, res) => {
     res.send("Welcome to user page ");
 });
+
+app.use('/api/users', userRoute);
+app.use('/api/auth', authRoute);
 
 app.listen(8800, () => {
     console.log('Server is running on port 8800');
